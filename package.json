@@ -5,6 +5,7 @@
   "repository": "https://github.com/cherryApp/html5-reloaded.git",
   "license": "MIT",
   "dependencies": {
+    "angular": "^1.5.5",
     "angularjs": "*",
     "bootstrap": "*",
     "grunt": "^1.0.1",
