@@ -1,6 +1,7 @@
-module.exports = function(grunt) {
-
-  // Project configuration.
+module.exports = grunt => {
+	// load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns 
+	require('load-grunt-tasks')(grunt);
+// Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
@@ -12,7 +13,7 @@ module.exports = function(grunt) {
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/angular/angular.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            'src/js/**/*.js'
+            'src/js/build.js'
         ],
         dest: 'build/js/<%= pkg.name %>.min.js'
       }
@@ -56,9 +57,22 @@ module.exports = function(grunt) {
             ]
       }
     },
+    babel: {
+        options: {
+          sourceMap: true
+        },
+        dist: {
+            files: {
+                "src/js/build.js": [
+                    'src/js/class/*.js',
+                    'src/js/*.js'
+                ]
+            }
+        }
+    },
     watch: {
       scripts: {
-        files: ['src/js/*.js', 'src/css/**/*.css', 'src/**/*.html'],
+        files: ['src/js/**/*.js', 'src/css/**/*.css', 'src/**/*.html'],
         tasks: ['dev'],
         options: {
             spawn: false,
@@ -69,13 +83,15 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+//  grunt.loadNpmTasks('grunt-contrib-uglify');
+//  grunt.loadNpmTasks('grunt-contrib-watch');
+//  grunt.loadNpmTasks('grunt-contrib-cssmin');
+//  grunt.loadNpmTasks('grunt-contrib-copy');
+//  grunt.loadNpmTasks('babel');
 
   // Default task(s).
-  grunt.registerTask('dev', ['uglify', 'cssmin', 'copy']);
+  grunt.registerTask('dev', ['babel','uglify', 'cssmin', 'copy']);
   grunt.registerTask('default', ['watch']);
-
+ 
+	
 };

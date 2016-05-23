@@ -15,18 +15,32 @@ var inputs = regForm.querySelectorAll( 'input' );
 // Egyedi fájl input létrehozása.
 var fileInputs = document.querySelectorAll( '.file-input-group' );
 for ( var i = 0; i < fileInputs.length; i++ ) {
+    // Beolvassuk a változó értékeket.
     var name = fileInputs[i].getAttribute( 'data-name' );
     var label = document.createElement( 'label' );
+    
+    
+    // Létrehozzuk a címkét.
     label.setAttribute( 'for', name );
-    label.className = 'col-sm-2 col-xs-offset-2 control-label btn btn-primary file-input-label'; 
-    console.log( 'name', name );
+    label.className = 'col-xs-6 col-xs-offset-2 control-label btn btn-primary file-input-label'; 
     label.innerHTML = name;
     
+    // Létrehozzuk az input elemet.
     var input = document.createElement( 'input' );
     input.setAttribute( 'id', name );
     input.type = 'file';
     input.className = 'hidden-file-input';
     
+    // Figyeljük az input értékének a változását.
+    input.addEventListener( 'change', function(ev) {
+        var currentLabel = 
+            document.querySelector('label[for='+ ev.target.id +']');
+        var name = ev.target.value;
+        name = name.replace(/\\/g, '/').split('/').pop();
+        currentLabel.innerHTML = name;
+    });
+    
+    // Hozzáadjuk az elemeket a divhez.
     fileInputs[i].appendChild( input );
     fileInputs[i].appendChild( label );
 }
