@@ -32,7 +32,7 @@ for ( var i = 0; i < fileInputs.length; i++ ) {
     input.className = 'hidden-file-input';
     
     // Figyeljük az input értékének a változását.
-    input.addEventListener( 'change', function(ev) {
+    input.addEventListener( 'change', (ev) => { 
         var currentLabel = 
             document.querySelector('label[for='+ ev.target.id +']');
         var name = ev.target.value;
@@ -44,6 +44,10 @@ for ( var i = 0; i < fileInputs.length; i++ ) {
     fileInputs[i].appendChild( input );
     fileInputs[i].appendChild( label );
 }
+
+var evens = [1,2,3];
+var odds = evens.map(v => v + 1);
+console.log( odds );
 
 
 

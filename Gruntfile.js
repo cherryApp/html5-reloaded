@@ -13,7 +13,7 @@ module.exports = grunt => {
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/angular/angular.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            'src/js/build.js'
+            'build.js'
         ],
         dest: 'build/js/<%= pkg.name %>.min.js'
       }
@@ -59,15 +59,25 @@ module.exports = grunt => {
     },
     babel: {
         options: {
-          sourceMap: true
+          sourceMap: false,
+            presets: ['es2015']
         },
         dist: {
             files: {
-                "src/js/build.js": [
-                    'src/js/class/*.js',
-                    'src/js/*.js'
-                ]
+                "build.js": 'built.js'
             }
+        }
+    },
+    concat: {
+        options: {
+            separator: ';',
+        },
+        dist: {
+            src: [
+                'src/js/class/*.js',
+                'src/js/*.js'
+            ],
+            dest: 'built.js',
         }
     },
     watch: {
@@ -90,7 +100,7 @@ module.exports = grunt => {
 //  grunt.loadNpmTasks('babel');
 
   // Default task(s).
-  grunt.registerTask('dev', ['babel','uglify', 'cssmin', 'copy']);
+  grunt.registerTask('dev', ['concat', 'babel', 'uglify', 'cssmin', 'copy']);
   grunt.registerTask('default', ['watch']);
  
 	

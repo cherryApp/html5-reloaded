@@ -1,30 +1,34 @@
 // Osztály alapjául szolgáló függvény létrehozása.
-var dateClass = function(defaultDate) {
-    this.cDate = new Date();
+class dateClass {
     
-    this.construct = function() {
-        this.cDate = defaultDate ? defaultDate : this.cDate;
+    constructor(defaultDate) {
+        this.cDate = defaultDate ? defaultDate : new Date();
     };
     
-    this.toDoubleChars = function(num) {
+    static toDoubleChars(num) {
         if ( num < 10 && num > -10 ) {
             return '0'+num;
         }
         return ''+num; 
     };
     
-    this.toMysql = function() {
+    goodMorning() {
+        var d = this.toMysql();
+        var template = String.raw`Sziasztok, szép napunk van. 
+                        Ma ${d} van.`;
+        console.log( template );
+    }
+    
+    toMysql(){
         var parts = [];
         parts.push( this.cDate.getFullYear() );
         parts.push( 
-            this.toDoubleChars(this.cDate.getMonth()+1)
+            dateClass.toDoubleChars(this.cDate.getMonth()+1)
         );
         parts.push( 
-            this.toDoubleChars(this.cDate.getDate())
+            dateClass.toDoubleChars(this.cDate.getDate())
         );
 
         return parts.join('-');    
     };
-    
-    this.construct();
 };
