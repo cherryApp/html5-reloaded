@@ -75,6 +75,21 @@ $.fn.modBtn = function(modalId) {
     return this;
 };
 
+// Repülő animálása.
+$('.glyphicon-plane')
+    .css({
+        'font-size': '24px',
+        'transform': 'rotate(90deg)',
+        'opacity': '0.5',
+        'right': '1000px',
+        'position': 'absolute'
+    })
+    .animate({
+        'opacity': '1',
+        'right': ['50%'],
+        'font-size': '72px'
+    }, 1000);
+
 
 
 
