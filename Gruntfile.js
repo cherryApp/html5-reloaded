@@ -79,6 +79,7 @@ module.exports = grunt => {
         },
         dist: {
             src: [
+                'src/js/lib/*.js',
                 'src/js/*.js',
                 'src/js/factory/*.js',
                 'src/js/controller/*.js'
