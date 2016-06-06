@@ -3,31 +3,43 @@
         "name": "Jeffrey",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "jeffrey@itfactory.hu",
+        "pass": "jeffrey"
     },{
         "name": "Joe",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "joe@itfactory.hu",
+        "pass": "joe"
     },{
         "name": "Jack",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "jack@itfactory.hu",
+        "pass": "jack"
     },{
         "name": "Ádám",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "adam@itfactory.hu",
+        "pass": "adam"
     },{
         "name": "Zsuzsi",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "zsuzsi@itfactory.hu",
+        "pass": "zsuzsi"
     },{
         "name": "Józsi",
         "age": 42,
         "address": "New York",
-        "job": "programmer"
+        "job": "programmer",
+        "email": "jozsi@itfactory.hu",
+        "pass": "jozsi"
     }
 ]
