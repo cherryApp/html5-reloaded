@@ -2,7 +2,7 @@
 webapp.controller( "bodyController", ['$scope', '$http', 'userFactory', '$rootScope',
     function($scope, $http, userFactory, $rootScope){
         
-    $scope.isLoggedIn = true; 
+    $scope.isLoggedIn = false; 
     $scope.defaultConent = 'index';
     $scope.currentContentName = '';
         
@@ -10,20 +10,26 @@ webapp.controller( "bodyController", ['$scope', '$http', 'userFactory', '$rootSc
         
     $scope.users = [];
         
+    userFactory.checkLogin()
+        .then(function(res){
+            $scope.isLoggedIn = res.loggedIn;
+            $scope.currentUser = res.user;
+        });
+        
     // Bejelentkezés.
-    $scope.doLogin = function() {
-        if ( !$scope.loginData ) {
+    $scope.doLogin = function(loginData) {
+        if ( !loginData ) {
             alert('Kérjük töltse ki a mezőket!');
             return;
         }
-        if ( !$scope.loginData.email || !$scope.loginData.pass ) {
+        if ( !loginData.email || !loginData.pass ) {
             alert('Kérjük töltse ki a mezőket!');
             return;
         }
         
-        userFactory.checkLogin($scope.loginData)
-            .then(function(loggedIn){
-                $scope.isLoggedIn = loggedIn;
+        userFactory.doLogin(loginData)
+            .then(function(serverData){
+                $scope.isLoggedIn = serverData.loggedIn;
             });
     };
     
