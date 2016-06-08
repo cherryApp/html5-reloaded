@@ -1,1 +1,36 @@
 <h1>Felhasználók kezelése</h1>
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Név</th>
+                    <th>Email</th>
+                    <th>Cím</th>
+                    <th>Kor</th>
+                    <th>Munka</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="user in users track by $index">
+                    <td>{{ ($index+1) }}</td>
+                    <td>
+                        <input class="form-control" data-ng-model="user.name"></td>
+                    <td>
+                        <input class="form-control" data-ng-model="user.email"></td>
+                    <td>
+                        <input class="form-control" data-ng-model="user.address"></td>
+                    <td>
+                        <input class="form-control" data-ng-model="user.age"></td>
+                    <td>
+                        <input class="form-control" data-ng-model="user.job"></td>
+                    <td>
+                        <button class="btn btn-primary" data-ng-click="modUser(user)">módosítás</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

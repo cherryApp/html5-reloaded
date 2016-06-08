@@ -8,7 +8,9 @@ webapp.controller( "bodyController", ['$scope', '$http', 'userFactory', '$rootSc
         
     $scope.name = "Jeffrey";
         
-    $scope.users = [];
+    $rootScope.$on( 'noLogin', function(){
+        $scope.isLoggedIn = false;
+    });
         
     userFactory.checkLogin()
         .then(function(res){

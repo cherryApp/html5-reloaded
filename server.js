@@ -13,13 +13,20 @@ app.get('/', function (req, res) {
     res.send(index);
 });
 
-// Bejelentkezés.
-app.post('/dologin', function (req, res) {
+// Kérések adatainak összegyűjtése.
+function getRequestBody(req, callBack) {
     var requestData = '';
     req.on('data', function(dataPackage){
         requestData += dataPackage;
     });
     req.on('end', function(){
+        callBack(requestData);
+    });
+}
+
+// Bejelentkezés.
+app.post('/dologin', function (req, res) {
+    getRequestBody(req, function(requestData){
         var serverResponse = {
             'userId': 0,
             'loggedIn': false
@@ -105,6 +112,30 @@ function checkUser(req, res) {
         return false;
     }
 }
+
+// Felhasználó módosítása.
+app.post('/user', function(req, res) {
+    var user = checkUser(req, res);
+    if ( !user ) return;
+    
+    getRequestBody(req, function(requestData) {
+        var user = JSON.parse(requestData);
+        var users = getUsers();
+        for( var k in users ) {
+            if ( users[k].email === user.email ) {
+                for( var j in user ) {
+                    users[k][j] = user[j];
+                }
+            }
+        }
+        fs.writeFileSync(
+            __dirname + '/json/user.json',
+            JSON.stringify(users)
+        );
+        
+        res.send(JSON.stringify({'success': true}));
+    });    
+});
 
 // Munkamenetek beolvasása.
 function getSessions() {

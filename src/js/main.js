@@ -9,7 +9,8 @@ function($routeProvider, $locationProvider) {
     controller: 'indexController'
   })
   .when('/users', {
-    templateUrl: 'template/content/users.html'
+    templateUrl: 'template/content/users.html',
+    controller: 'userController'
   })
   .when('/settings', {
     templateUrl: 'template/content/settings.html'
